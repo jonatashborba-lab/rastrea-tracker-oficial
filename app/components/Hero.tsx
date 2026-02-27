@@ -2,7 +2,7 @@ type HeroProps = {
   title: string;
   subtitle?: string;
   image: string; // ex: "/frota-hero.jpg"
-  heightClassName?: string; // ex: "min-h-[360px] md:min-h-[420px]"
+  heightClassName?: string;
 };
 
 export default function Hero({
@@ -17,11 +17,11 @@ export default function Hero({
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: url("${image}"),
+          backgroundImage: url(${image}),
         }}
       />
 
-      {/* Overlay (clareia e dá contraste sem escurecer demais) */}
+      {/* Overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-black/20 to-black/40" />
 
       {/* Conteúdo */}
@@ -37,11 +37,11 @@ export default function Hero({
               {title}
             </h1>
 
-            {subtitle ? (
+            {subtitle && (
               <p className="mt-4 text-white/90 max-w-3xl mx-auto leading-relaxed drop-shadow-[0_10px_26px_rgba(0,0,0,0.55)]">
                 {subtitle}
               </p>
-            ) : null}
+            )}
           </div>
         </div>
       </div>

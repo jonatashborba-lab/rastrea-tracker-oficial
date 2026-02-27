@@ -1,6 +1,5 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
-import TrackerBackground from "./components/TrackerBackground";
 import SiteHeader from "./components/SiteHeader";
 
 const WHATSAPP =
@@ -8,6 +7,7 @@ const WHATSAPP =
 
 // coloque sua imagem em /public com esse nome:
 const GANHOS_IMAGE = "/ganhos.png";
+const HERO_IMAGE = "/hero-bg.jpg";
 
 export default function Page() {
   return (
@@ -16,15 +16,16 @@ export default function Page() {
 
       {/* HERO (MAPA) — NÃO ALTERADO */}
       <section className="relative overflow-hidden">
-        <TrackerBackground />
-
-        <div
-          className="relative z-10"
-          style={{
-            background:
-              "linear-gradient(90deg, rgba(15,23,42,0.55) 0%, rgba(2,6,23,0.55) 100%)",
-          }}
-        >
+        {/* FUNDO COM IMAGEM */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src={HERO_IMAGE}
+            alt="Mapa com veículos rastreados"
+            className="h-full w-full object-cover"
+          />
+          <div className="absolute inset-0 bg-black/40" />
+        </div>
+        <div className="relative z-10">
           <div className="w-full px-6 py-14 md:py-20">
             <div className="grid gap-10 md:grid-cols-2 md:items-center">
               {/* ESQUERDA */}
@@ -140,14 +141,26 @@ export default function Page() {
                   A Rastrea Tracker atua com soluções de rastreamento e
                   monitoramento veicular, focada em segurança, praticidade e
                   gestão. Você acompanha tudo em tempo real pelo aplicativo e
-                  portal web, com relatórios e alertas inteligentes — e conta com
-                  atendimento para orientar quando precisar.
+                  portal web, com relatórios e alertas inteligentes — e conta
+                  com atendimento para orientar quando precisar.
                 </p>
 
                 <div className="mt-8 grid gap-4 sm:grid-cols-3">
-                  <StatCard title="Monitoramento" value="24h" desc="com suporte" />
-                  <StatCard title="App + Web" value="Sim" desc="acesso completo" />
-                  <StatCard title="Cobertura" value="Brasil" desc="uso em viagens" />
+                  <StatCard
+                    title="Monitoramento"
+                    value="24h"
+                    desc="com suporte"
+                  />
+                  <StatCard
+                    title="App + Web"
+                    value="Sim"
+                    desc="acesso completo"
+                  />
+                  <StatCard
+                    title="Cobertura"
+                    value="Brasil"
+                    desc="uso em viagens"
+                  />
                 </div>
 
                 <div className="mt-8 flex flex-wrap gap-3">
@@ -217,8 +230,8 @@ export default function Page() {
 
                 <h2 className="mt-4 text-3xl md:text-4xl font-extrabold tracking-tight">
                   Rastreamento para{" "}
-                  <span className="text-yellow-400">cada tipo de veículo</span>
-                  — com funções avançadas.
+                  <span className="text-yellow-400">cada tipo de veículo</span>—
+                  com funções avançadas.
                 </h2>
 
                 <p className="mt-3 max-w-3xl text-white/75 leading-relaxed">
@@ -241,13 +254,19 @@ export default function Page() {
             </div>
 
             <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-              <SolutionCard title="Carro" desc="Proteção e alertas em tempo real.">
+              <SolutionCard
+                title="Carro"
+                desc="Proteção e alertas em tempo real."
+              >
                 <IconCar />
               </SolutionCard>
               <SolutionCard title="Moto" desc="Rastreamento leve e eficiente.">
                 <IconMoto />
               </SolutionCard>
-              <SolutionCard title="Caminhão" desc="Controle de rotas e operação.">
+              <SolutionCard
+                title="Caminhão"
+                desc="Controle de rotas e operação."
+              >
                 <IconTruck />
               </SolutionCard>
               <SolutionCard title="Frota" desc="Gestão completa e relatórios.">
@@ -394,8 +413,8 @@ export default function Page() {
 
             <p className="mt-4 text-black/70 leading-relaxed">
               Chega de medo na hora de andar com seu veículo. Nós usamos
-              rastreadores homologados e chips de operadoras com bons sinais. Com
-              um sistema de alta qualidade, você consegue localizar, gerar
+              rastreadores homologados e chips de operadoras com bons sinais.
+              Com um sistema de alta qualidade, você consegue localizar, gerar
               relatórios, verificar percursos, receber alertas e ter muito mais
               controle no dia a dia. Dessa forma, você aumenta as chances de
               recuperação em caso de roubo ou furto e melhora a gestão do seu
