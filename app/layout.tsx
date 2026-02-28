@@ -1,6 +1,15 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
+const SITE_NAME = "Rastrea Tracker";
+const SITE_URL = "https://www.rastreatracker.com.br";
+
+// Ajuste se quiser (pode deixar assim por enquanto)
+const PHONE = "+55 54 3229-0814";
+const CITY = "Caxias do Sul";
+const REGION = "RS";
+const COUNTRY = "BR";
+
 export const metadata: Metadata = {
   title: "Rastrea Tracker | Rastreamento Veicular em Caxias do Sul",
   description:
@@ -23,6 +32,24 @@ export const metadata: Metadata = {
 
   metadataBase: new URL("https://www.rastreatracker.com.br"),
 
+  // ✅ ADIÇÃO: canonical (URL oficial)
+  alternates: {
+    canonical: SITE_URL,
+  },
+
+  // ✅ ADIÇÃO: robots
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+
   openGraph: {
     title: "Rastrea Tracker | Rastreamento Veicular em Caxias do Sul",
     description:
@@ -31,8 +58,64 @@ export const metadata: Metadata = {
     siteName: "Rastrea Tracker",
     locale: "pt_BR",
     type: "website",
+
+    // ✅ ADIÇÃO: imagem do OpenGraph (WhatsApp/Facebook)
+    images: [
+      {
+        url: "/og.jpg",
+        width: 1200,
+        height: 630,
+        alt: `${SITE_NAME} - Rastreamento Veicula`,
+      },
+    ],
+  },
+
+  // ✅ ADIÇÃO: Twitter card
+  twitter: {
+    card: "summary_large_image",
+    title: "Rastrea Tracker | Rastreamento Veicular em Caxias do Sul",
+    description:
+      "Rastreamento veicular com app, alertas, histórico de rotas e suporte. Planos para carro, moto, caminhão e frota em Caxias do Sul e região.",
+    images: ["/og.jpg"],
   },
 };
+
+// ✅ ADIÇÃO: JSON-LD (Schema.org)
+function JsonLd() {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    name: SITE_NAME,
+    url: SITE_URL,
+    telephone: PHONE,
+    areaServed: [
+      { "@type": "City", name: "Caxias do Sul" },
+      { "@type": "City", name: "Bento Gonçalves" },
+      { "@type": "City", name: "Farroupilha" },
+      { "@type": "City", name: "Flores da Cunha" },
+      { "@type": "City", name: "Gramado" },
+      { "@type": "City", name: "Canela" },
+    ],
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: CITY,
+      addressRegion: REGION,
+      addressCountry: COUNTRY,
+    },
+    sameAs: [
+      // Coloque seus links quando tiver:
+      // "https://instagram.com/SEUUSUARIO",
+      // "https://facebook.com/SUAPAGINA",
+    ],
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+    />
+  );
+}
 
 export default function RootLayout({
   children,
@@ -41,7 +124,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-BR">
-      <body className="bg-black text-white antialiased">{children}</body>
+      <body className="bg-black text-white antialiased">
+        <JsonLd />
+        {children}
+      </body>
     </html>
   );
 }
