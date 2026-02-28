@@ -223,7 +223,7 @@ export default function Page() {
               {/* DIREITA — NO DESKTOP: SOME E ENTRA DEPOIS DE 2s */}
               <div
                 className="rounded-2xl bg-yellow-400 p-7 shadow-2xl hero-enter-right"
-                style={{ ["--delay" as React.CSSProperties]: "2s" }}
+                style={{ "--delay": "2s" } as React.CSSProperties}
               >
                 <p className="text-center text-base font-extrabold">
                   Preencha para fazer uma cotação grátis
