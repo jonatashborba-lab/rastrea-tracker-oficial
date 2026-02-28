@@ -116,7 +116,7 @@ export default function Page() {
               {/* ESQUERDA — NO DESKTOP: SOME E ENTRA DEPOIS DE 2s */}
               <div
                 className="hero-enter-left"
-                style={{ ["--delay" as any]: "2s" }}
+                style={{ "--delay": "2s" } as React.CSSProperties}
               >
                 <p className="inline-flex rounded-full border border-white/15 px-3 py-1 text-xs text-white/80">
                   Monitoramento 24h • App • Alertas
@@ -223,7 +223,9 @@ export default function Page() {
               {/* DIREITA — NO DESKTOP: SOME E ENTRA DEPOIS DE 2s */}
               <div
                 className="rounded-2xl bg-yellow-400 p-7 shadow-2xl hero-enter-right"
-                style={{ color: "#111", ["--delay" as any]: "2s" }}
+                style={
+                  { color: "#111", "--delay": "2s" } as React.CSSProperties
+                }
               >
                 <p className="text-center text-base font-extrabold">
                   Preencha para fazer uma cotação grátis
