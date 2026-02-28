@@ -2,7 +2,7 @@ import Image from "next/image";
 import SiteHeader from "../components/SiteHeader";
 
 const WHATSAPP =
-  "https://wa.me/5551999999999?text=Olá! Quero uma cotação de rastreador para moto.";
+  "https://wa.me/555436421367?text=Olá! Quero uma cotação de rastreador para moto.";
 
 export default function MotoPage() {
   return (
@@ -11,7 +11,7 @@ export default function MotoPage() {
 
       {/* HERO */}
       <section
-        className="relative h-[420px] md:h-[520px] flex items-center justify-center text-center"
+        className="relative h-[420px] md:h-[280px] flex items-center justify-center text-center"
         style={{
           backgroundImage:
             "linear-gradient(rgba(0,0,0,.28), rgba(0,0,0,.28)), url('/moto-hero.jpg')",
@@ -20,23 +20,16 @@ export default function MotoPage() {
         }}
       >
         <div className="px-6">
-          <h1 className="text-4xl md:text-6xl font-extrabold drop-shadow-lg">
-            Rastreador para moto
+          <h1 className="text-4xl md:text-4xl font-extrabold drop-shadow-lg">
+            Rastreamento para moto
           </h1>
 
           <p className="mt-4 text-white/90 text-lg drop-shadow">
-            Adquira seu rastreador para moto sem necessidade de comprar o
+            Adquira o Rastreamento para sua moto sem necessidade de comprar o
             equipamento
           </p>
 
-          <a
-            href={WHATSAPP}
-            target="_blank"
-            rel="noreferrer"
-            className="inline-block mt-8 bg-red-600 hover:bg-red-500 transition px-8 py-4 rounded-xl font-bold shadow-xl"
-          >
-            Quero cotação no WhatsApp
-          </a>
+          {/* REMOVIDO: botão "Quero cotação no WhatsApp" no HERO (somente era exibido no desktop também) */}
         </div>
       </section>
 
@@ -102,7 +95,9 @@ export default function MotoPage() {
                     "Alertas",
                   ].map((t) => (
                     <li key={t} className="px-6 py-4 flex items-center gap-3">
-                      <span className="text-green-600 text-lg font-bold">✓</span>
+                      <span className="text-green-600 text-lg font-bold">
+                        ✓
+                      </span>
                       <span className="text-black/80">{t}</span>
                     </li>
                   ))}

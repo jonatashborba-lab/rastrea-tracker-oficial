@@ -8,7 +8,7 @@ export default function PlanosPage() {
 
       {/* HERO */}
       <section
-        className="relative h-[420px] md:h-[520px] flex items-center justify-center text-center"
+        className="relative h-[420px] md:h-[280px] flex items-center justify-center text-center"
         style={{
           backgroundImage:
             "linear-gradient(rgba(0,0,0,.28), rgba(0,0,0,.28)), url('/cidade-noite.jpg')",
@@ -17,22 +17,17 @@ export default function PlanosPage() {
         }}
       >
         <div className="px-6">
-          <h1 className="text-4xl md:text-6xl font-extrabold drop-shadow-lg">
+          <h1 className="text-4xl md:text-4xl font-extrabold drop-shadow-lg">
             Rastreamento com Monitoramento
             <br />
             Central 24 horas
           </h1>
 
           <p className="mt-4 text-white/90 text-lg drop-shadow">
-            Planos completos com central 24h, aplicativo e suporte.
+            Planos Automonitoramento sem Central 24hs, aplicativo e suporte.
           </p>
 
-          <Link
-            href="/contato"
-            className="inline-block mt-8 bg-red-600 hover:bg-red-500 transition px-8 py-4 rounded-xl font-bold shadow-xl"
-          >
-            Solicitar cotação
-          </Link>
+          {/* REMOVIDO: Botão "Solicitar cotação" no HERO (somente ajuste solicitado) */}
         </div>
       </section>
 

@@ -11,7 +11,7 @@ export default function CarroPage() {
 
       {/* HERO */}
       <section
-        className="relative h-[420px] md:h-[520px] flex items-center justify-center text-center"
+        className="relative h-[420px] md:h-[280px] flex items-center justify-center text-center"
         style={{
           backgroundImage:
             "linear-gradient(rgba(0,0,0,.28), rgba(0,0,0,.28)), url('/carro-hero.jpg')",
@@ -20,8 +20,8 @@ export default function CarroPage() {
         }}
       >
         <div className="px-6">
-          <h1 className="text-4xl md:text-6xl font-extrabold drop-shadow-lg">
-            Rastreador para carro
+          <h1 className="text-4xl md:text-4xl font-extrabold drop-shadow-lg">
+            Rastreamento para carro
           </h1>
 
           <p className="mt-4 text-white/90 text-lg drop-shadow">
@@ -29,14 +29,7 @@ export default function CarroPage() {
             equipamento
           </p>
 
-          <a
-            href={WHATSAPP}
-            target="_blank"
-            rel="noreferrer"
-            className="inline-block mt-8 bg-red-600 hover:bg-red-500 transition px-8 py-4 rounded-xl font-bold shadow-xl"
-          >
-            Quero cotação no WhatsApp
-          </a>
+          {/* BOTÃO REMOVIDO CONFORME SOLICITADO */}
         </div>
       </section>
 
@@ -74,7 +67,7 @@ export default function CarroPage() {
               </p>
             </div>
 
-            {/* DIREITA (BOX DO PLANO) */}
+            {/* DIREITA */}
             <aside className="rounded-2xl border border-black/10 overflow-hidden shadow-[0_20px_80px_rgba(0,0,0,0.15)]">
               <div className="bg-[#0a0f2b] text-white px-6 py-5 text-center font-extrabold">
                 Plano Rastreamento Completo
@@ -102,7 +95,9 @@ export default function CarroPage() {
                     "Alertas",
                   ].map((t) => (
                     <li key={t} className="px-6 py-4 flex items-center gap-3">
-                      <span className="text-green-600 text-lg font-bold">✓</span>
+                      <span className="text-green-600 text-lg font-bold">
+                        ✓
+                      </span>
                       <span className="text-black/80">{t}</span>
                     </li>
                   ))}
@@ -122,7 +117,7 @@ export default function CarroPage() {
             </aside>
           </div>
 
-          {/* BLOCO FINAL (IGUAL À PRIMEIRA IMAGEM) */}
+          {/* BLOCO FINAL */}
           <div className="mt-16">
             <h3 className="text-4xl md:text-5xl font-extrabold tracking-tight text-[#0a0f2b]">
               Saiba como o rastreamento veicular da Rastrea Tracker pode te
@@ -130,17 +125,7 @@ export default function CarroPage() {
             </h3>
 
             <p className="mt-6 text-black/80 leading-relaxed text-lg">
-              Chega de medo na hora de andar com seu veículo no aplicativo. Nós
-              vamos te proporcionar o melhor serviço de rastreamento do mercado,
-              utilizamos rastreadores homologados e chips de operadoras com os
-              melhores sinais. Temos clientes que possuem seguro e utilizam
-              nosso rastreador e clientes que até mesmo utilizam dois
-              rastreadores devido a precisão e segurança de nosso rastreamento.
-              Conte com um sistema de alta qualidade para localizar seu veículo,
-              gerar relatórios, verificar percursos, receber alertas, bloqueio,
-              aplicativo e muito mais. Dessa forma, você terá um aumento na
-              chance de recuperar seu veículo e também realizar um monitoramento
-              veicular completo.
+              Chega de medo na hora de andar com seu veículo no aplicativo...
             </p>
 
             <div className="mt-8">

@@ -5,7 +5,7 @@ import Link from "next/link";
 import SiteHeader from "../../components/SiteHeader";
 
 const WHATSAPP =
-  "https://wa.me/5551999999999?text=Olá! Quero comprar o Kit Rastreador.";
+  "https://wa.me/555436421367?text=Olá! Quero comprar o Kit Rastreador.";
 
 export default function KitRastreadorPage() {
   return (
