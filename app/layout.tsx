@@ -3,7 +3,15 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Rastrea Tracker | Rastreamento Veicular em Caxias do Sul",
-  description: "Rastreamento veicular em Caxias do Sul. Instalação rápida, monitoramento 24h, app completo e planos acessíveis. Proteja seu carro hoje.",
+  description:
+    "Rastreamento veicular em Caxias do Sul. Instalação rápida, monitoramento 24h, app completo e planos acessíveis. Proteja seu carro hoje.",
+  keywords: [
+    "rastreamento veicular caxias do sul",
+    "rastreador veicular caxias do sul",
+    "rastreador para carros",
+    "rastreamento gps caxias",
+    "rastrea tracker",
+  ],
 
   verification: {
     google: "CtexWoTg3wVNMZQXmO9e1N6bWFvMOsN354bfL0c_pVc",
@@ -16,8 +24,9 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://www.rastreatracker.com.br"),
 
   openGraph: {
-    title: "Rastrea Tracker",
-    description: "Rastreamento veicular profissional",
+    title: "Rastrea Tracker | Rastreamento Veicular em Caxias do Sul",
+    description:
+      "Proteja seu veículo com rastreamento 24h, aplicativo completo e instalação rápida em Caxias do Sul.",
     url: "https://www.rastreatracker.com.br",
     siteName: "Rastrea Tracker",
     locale: "pt_BR",
