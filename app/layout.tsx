@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Rastrea Tracker",
-  description: "Rastreamento veicular profissional",
+  title: "Rastrea Tracker | Rastreamento Veicular em Caxias do Sul",
+  description: "Rastreamento veicular em Caxias do Sul. Instalação rápida, monitoramento 24h, app completo e planos acessíveis. Proteja seu carro hoje.",
 
   verification: {
     google: "CtexWoTg3wVNMZQXmO9e1N6bWFvMOsN354bfL0c_pVc",
