@@ -114,10 +114,10 @@ export default function Page() {
           <div className="w-full px-6 py-14 md:py-20">
             <div className="grid gap-10 md:grid-cols-2 md:items-center">
               {/* ESQUERDA — NO DESKTOP: SOME E ENTRA DEPOIS DE 2s */}
-             <div
-  className="hero-enter-left"
-  style={{ "--delay": "2s" } as React.CSSProperties}
->
+              <div
+                className="hero-enter-left"
+                style={{ "--delay": "2s" } as React.CSSProperties}
+              >
                 <p className="inline-flex rounded-full border border-white/15 px-3 py-1 text-xs text-white/80">
                   Monitoramento 24h • App • Alertas
                 </p>
