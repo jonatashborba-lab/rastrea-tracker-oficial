@@ -1,16 +1,89 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
 import SiteHeader from "../../components/SiteHeader";
+import Script from "next/script";
+import type { Metadata } from "next";
 
-const WHATSAPP =
-  "https://wa.me/555436421367?text=Olá! Quero comprar o Kit Rastreador.";
+/* ----------------------- SEO (site) ----------------------- */
+const SITE_NAME = "Rastrea Tracker";
+const SITE_URL = "https://www.rastreatracker.com.br";
+const PAGE_PATH = "/planos/kit-rastreador";
+const PAGE_URL = `${SITE_URL}${PAGE_PATH}`;
+
+/* ----------------------- WhatsApp ----------------------- */
+const WHATSAPP_PHONE = "555436421367";
+const WHATSAPP_MESSAGE = "Olá! Quero comprar o Kit Rastreador.";
+const WHATSAPP = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(
+  WHATSAPP_MESSAGE
+)}`;
+
+/* ----------------------- Metadata ----------------------- */
+export const metadata: Metadata = {
+  title:
+    "Kit Rastreador Veicular | Compra do Equipamento + 30 Dias | Rastrea Tracker",
+  description:
+    "Compre o Kit Rastreador Veicular da Rastrea Tracker: rastreamento em tempo real, alertas, histórico e acesso App + Web. Inclui 30 dias e depois mensalidade de R$ 39,90 sem fidelidade.",
+  alternates: { canonical: PAGE_URL },
+  openGraph: {
+    title: "Kit Rastreador Veicular | Rastrea Tracker",
+    description:
+      "Kit rastreador com App + Web, alertas, histórico e relatórios. Inclui 30 dias e depois R$ 39,90/mês sem fidelidade.",
+    url: PAGE_URL,
+    siteName: SITE_NAME,
+    type: "website",
+    images: [
+      {
+        url: `${SITE_URL}/kit-rastreador.png`,
+        width: 1200,
+        height: 630,
+        alt: "Kit Rastreador Veicular - Rastrea Tracker",
+      },
+    ],
+  },
+  robots: { index: true, follow: true },
+};
 
 export default function KitRastreadorPage() {
+  /* ----------------------- JSON-LD (SEO) ----------------------- */
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: "Kit Rastreador Veicular",
+    brand: { "@type": "Brand", name: SITE_NAME },
+    description:
+      "Kit rastreador veicular com acesso App + Web, alertas, histórico e relatórios. Inclui 30 dias de rastreamento e depois mensalidade de R$ 39,90/mês (plataforma + chip), sem fidelidade.",
+    image: [`${SITE_URL}/kit-rastreador.png`],
+    offers: {
+      "@type": "Offer",
+      url: PAGE_URL,
+      priceCurrency: "BRL",
+      price: "350.00",
+      availability: "https://schema.org/InStock",
+    },
+    isRelatedTo: [
+      {
+        "@type": "Service",
+        name: "Acesso à plataforma + chip de dados",
+        offers: {
+          "@type": "Offer",
+          priceCurrency: "BRL",
+          price: "39.90",
+          url: `${SITE_URL}/planos/monitoramento-proprio`,
+        },
+      },
+    ],
+  };
+
   return (
     <main className="bg-white text-black">
       <SiteHeader />
+
+      {/* SEO: JSON-LD */}
+      <Script
+        id="jsonld-kit-rastreador"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
 
       {/* TOPO (sem hero) */}
       <section className="max-w-7xl mx-auto px-6 pt-14 pb-10">
@@ -92,7 +165,7 @@ export default function KitRastreadorPage() {
                 cartão
               </p>
 
-              {/* MÉTODOS — MAIS DESTACADOS (negrito e “chips” melhores) */}
+              {/* MÉTODOS — MAIS DESTACADOS */}
               <div className="mt-5 flex flex-wrap gap-2 text-sm">
                 <PayPill>Visa</PayPill>
                 <PayPill>Master</PayPill>
@@ -134,7 +207,6 @@ export default function KitRastreadorPage() {
                   R$ 39,90 / mês
                 </div>
 
-                {/* “sem fidelidade” em negrito */}
                 <span className="text-sm font-extrabold text-[#0a0f2b]">
                   sem fidelidade
                 </span>
@@ -208,7 +280,7 @@ export default function KitRastreadorPage() {
         </div>
       </section>
 
-      {/* FAQ (abre/fecha) */}
+      {/* FAQ */}
       <section className="bg-white text-black border-t border-black/5">
         <div className="max-w-7xl mx-auto px-6 py-16">
           <h2 className="text-3xl font-extrabold text-[#0a0f2b]">
@@ -265,7 +337,6 @@ export default function KitRastreadorPage() {
               Comprar agora no WhatsApp
             </a>
 
-            {/* “Ver planos” com cor (sem mudar texto) */}
             <Link
               href="/planos"
               className="inline-flex items-center justify-center bg-[#0a0f2b] text-white hover:opacity-90 px-10 py-4 rounded-xl font-extrabold transition shadow-sm"
@@ -279,7 +350,7 @@ export default function KitRastreadorPage() {
       {/* FOOTER */}
       <footer className="bg-black text-white border-t border-white/10">
         <div className="px-6 py-10 text-center text-white/60">
-          © {new Date().getFullYear()} Rastrea Tracker
+          © {new Date().getFullYear()} {SITE_NAME}
         </div>
       </footer>
     </main>

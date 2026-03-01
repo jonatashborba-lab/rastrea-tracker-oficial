@@ -1,13 +1,101 @@
 import Image from "next/image";
 import SiteHeader from "../components/SiteHeader";
+import Script from "next/script";
+import type { Metadata } from "next";
 
-const WHATSAPP =
-  "https://wa.me/555436421367?text=Olá! Quero uma cotação de rastreador para moto.";
+const SITE_NAME = "Rastrea Tracker";
+const SITE_URL = "https://www.rastreatracker.com.br";
+const PAGE_URL = `${SITE_URL}/moto`;
+
+const WHATSAPP_PHONE = "555436421367";
+const WHATSAPP_MESSAGE = "Olá! Quero uma cotação de rastreador para moto.";
+const WHATSAPP = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(
+  WHATSAPP_MESSAGE
+)}`;
+
+export const metadata: Metadata = {
+  title: "Rastreamento para Moto em Caxias do Sul | Rastrea Tracker",
+  description:
+    "Rastreamento veicular para moto com app, portal web, alertas e suporte. Instalação rápida em Caxias do Sul e Serra Gaúcha. Planos a partir de R$ 49,90.",
+  alternates: {
+    canonical: PAGE_URL,
+  },
+  openGraph: {
+    title: "Rastreamento para Moto em Caxias do Sul | Rastrea Tracker",
+    description:
+      "Rastreamento para moto com app e web, alertas, relatórios e suporte. Atendimento em Caxias do Sul e Serra Gaúcha.",
+    url: PAGE_URL,
+    siteName: SITE_NAME,
+    type: "website",
+    images: [
+      {
+        url: `${SITE_URL}/moto-hero.jpg`,
+        width: 1200,
+        height: 630,
+        alt: "Rastreamento para moto - Rastrea Tracker",
+      },
+    ],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
 
 export default function MotoPage() {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: "Rastreamento para Moto",
+    description:
+      "Serviço de rastreamento veicular para moto com aplicativo, portal web, alertas, relatórios e suporte.",
+    areaServed: [
+      "Caxias do Sul - RS",
+      "Serra Gaúcha - RS",
+      "Carlos Barbosa - RS",
+      "Garibaldi - RS",
+      "Feliz - RS",
+      "Nova Petrópolis - RS",
+      "Bom Princípio - RS",
+      "Vacaria - RS",
+      "São Marcos - RS",
+      "Veranópolis - RS",
+      "Antônio Prado - RS",
+      "Bento Gonçalves - RS",
+      "Farroupilha - RS",
+    ],
+    provider: {
+      "@type": "LocalBusiness",
+      name: SITE_NAME,
+      url: SITE_URL,
+      telephone: "+55 54 3642-1367",
+      areaServed: "Rio Grande do Sul",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Caxias do Sul",
+        addressRegion: "RS",
+        addressCountry: "BR",
+      },
+    },
+    offers: {
+      "@type": "Offer",
+      priceCurrency: "BRL",
+      price: "49.90",
+      availability: "https://schema.org/InStock",
+      url: PAGE_URL,
+    },
+  };
+
   return (
     <main className="min-h-screen bg-black text-white">
       <SiteHeader />
+
+      {/* SEO: JSON-LD (não muda layout) */}
+      <Script
+        id="jsonld-moto"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
 
       {/* HERO */}
       <section
@@ -29,7 +117,7 @@ export default function MotoPage() {
             equipamento
           </p>
 
-          {/* REMOVIDO: botão "Quero cotação no WhatsApp" no HERO (somente era exibido no desktop também) */}
+          {/* REMOVIDO: botão no HERO (mantido como você pediu) */}
         </div>
       </section>
 
@@ -50,18 +138,27 @@ export default function MotoPage() {
                 satisfeito com o seu atual.
               </p>
 
+              {/* Intenção local (SEO) — sem mexer no layout, só texto */}
+              <p className="mt-4 text-black/80 leading-relaxed text-lg">
+                Atendimento e instalação com foco em <b>Caxias do Sul</b> e na{" "}
+                <b>Serra Gaúcha</b>, incluindo Carlos Barbosa, Garibaldi, Feliz,
+                Nova Petrópolis, Bom Princípio, Vacaria, São Marcos, Veranópolis
+                e Antônio Prado.
+              </p>
+
               <div className="mt-10">
                 <Image
                   src="/motos.png"
-                  alt="Motos"
+                  alt="Rastreamento para moto - imagem de motos"
                   width={820}
                   height={520}
+                  sizes="(max-width: 1024px) 100vw, 820px"
                   className="w-full h-auto"
                 />
               </div>
 
               <p className="mt-8 text-black/80 leading-relaxed text-lg">
-                Somente na Rastrea Tracker você tem rastreamento veicular com os
+                Somente na {SITE_NAME} você tem rastreamento veicular com os
                 melhores equipamentos, cobertura nacional e suporte completo
                 para operação e segurança.
               </p>
@@ -117,11 +214,10 @@ export default function MotoPage() {
             </aside>
           </div>
 
-          {/* BLOCO FINAL (IGUAL AO PADRÃO QUE VOCÊ QUER) */}
+          {/* BLOCO FINAL */}
           <div className="mt-16">
             <h3 className="text-4xl md:text-5xl font-extrabold tracking-tight text-[#0a0f2b]">
-              Saiba como o rastreamento veicular da Rastrea Tracker pode te
-              ajudar
+              Saiba como o rastreamento veicular da {SITE_NAME} pode te ajudar
             </h3>
 
             <p className="mt-6 text-black/80 leading-relaxed text-lg">
@@ -155,7 +251,7 @@ export default function MotoPage() {
       {/* FOOTER */}
       <footer className="border-t border-white/10">
         <div className="px-6 py-10 text-sm text-white/60 text-center">
-          © {new Date().getFullYear()} Rastrea Tracker • Todos os direitos
+          © {new Date().getFullYear()} {SITE_NAME} • Todos os direitos
           reservados.
         </div>
       </footer>

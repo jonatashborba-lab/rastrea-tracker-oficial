@@ -1,16 +1,91 @@
 import SiteHeader from "../../components/SiteHeader";
+import type { Metadata } from "next";
+import Script from "next/script";
+
+const SITE_NAME = "Rastrea Tracker";
+const SITE_URL = "https://www.rastreatracker.com.br";
+const PAGE_URL = `${SITE_URL}/planos/monitoramento-proprio`;
 
 const WHATSAPP =
   "https://wa.me/555436421367?text=Olá! Quero saber mais sobre Monitoramento Próprio.";
 
+export const metadata: Metadata = {
+  title:
+    "Monitoramento Próprio (Auto Monitoramento) em Caxias do Sul | Rastrea Tracker",
+  description:
+    "Auto monitoramento veicular (monitoramento próprio) com app e portal web, alertas, relatórios e histórico. Sem central 24h. Atendimento em Caxias do Sul e Serra Gaúcha.",
+  alternates: { canonical: PAGE_URL },
+  openGraph: {
+    title: "Monitoramento Próprio (Auto Monitoramento) | Rastrea Tracker",
+    description:
+      "Faça você mesmo o monitoramento do seu veículo com app e web, alertas e relatórios. Atendimento em Caxias do Sul e Serra Gaúcha.",
+    url: PAGE_URL,
+    siteName: SITE_NAME,
+    type: "website",
+    images: [
+      {
+        url: `${SITE_URL}/automonitoramento-hero.jpg`,
+        width: 1200,
+        height: 630,
+        alt: "Auto monitoramento veicular - Rastrea Tracker",
+      },
+    ],
+  },
+  robots: { index: true, follow: true },
+};
+
 export default function MonitoramentoProprioPage() {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: "Monitoramento Próprio (Auto Monitoramento) Veicular",
+    description:
+      "Plano de auto monitoramento veicular em que o próprio cliente acompanha o veículo pela plataforma (app e web). Sem central de monitoramento 24 horas.",
+    url: PAGE_URL,
+    areaServed: [
+      "Caxias do Sul - RS",
+      "Serra Gaúcha - RS",
+      "Bento Gonçalves - RS",
+      "Farroupilha - RS",
+      "Carlos Barbosa - RS",
+      "Garibaldi - RS",
+      "Feliz - RS",
+      "Nova Petrópolis - RS",
+      "Bom Princípio - RS",
+      "Vacaria - RS",
+      "São Marcos - RS",
+      "Veranópolis - RS",
+      "Antônio Prado - RS",
+    ],
+    provider: {
+      "@type": "LocalBusiness",
+      name: SITE_NAME,
+      url: SITE_URL,
+      telephone: "+55 54 3642-1367",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Caxias do Sul",
+        addressRegion: "RS",
+        addressCountry: "BR",
+      },
+      areaServed: "Rio Grande do Sul",
+    },
+  };
+
   return (
     <main className="min-h-screen bg-black text-white">
+      {/* SEO: JSON-LD */}
+      <Script
+        id="jsonld-monitoramento-proprio"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
       <SiteHeader />
 
       {/* HERO */}
       <section
-        className="relative h-[420px] md:h-[520px] flex items-center justify-center text-center"
+        className="relative h-[420px] md:h-[280px] flex items-center justify-center text-center"
         style={{
           backgroundImage:
             "linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.45)), url('/automonitoramento-hero.jpg')",
@@ -170,7 +245,7 @@ export default function MonitoramentoProprioPage() {
         </div>
       </section>
 
-      {/* VANTAGENS (ATUALIZADO: mais premium e organizado) */}
+      {/* VANTAGENS */}
       <section className="bg-white text-black border-t">
         <div className="max-w-6xl mx-auto px-6 py-16">
           <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
@@ -216,7 +291,7 @@ export default function MonitoramentoProprioPage() {
         </div>
       </section>
 
-      {/* O QUE ESTÁ INCLUSO (ATUALIZADO: mais premium e organizado) */}
+      {/* O QUE ESTÁ INCLUSO */}
       <section className="bg-white text-black border-t">
         <div className="max-w-6xl mx-auto px-6 py-16">
           <h2 className="text-3xl font-extrabold text-[#0a0f2b]">
@@ -261,7 +336,7 @@ export default function MonitoramentoProprioPage() {
         </div>
       </section>
 
-      {/* IMPORTANTE (ATUALIZADO: destacar pontos essenciais) */}
+      {/* IMPORTANTE */}
       <section className="bg-[#0a0f2b] text-white">
         <div className="max-w-6xl mx-auto px-6 py-16">
           <h2 className="text-3xl font-extrabold">Importante</h2>
@@ -303,7 +378,7 @@ export default function MonitoramentoProprioPage() {
       {/* FOOTER */}
       <footer className="border-t border-white/10">
         <div className="px-6 py-10 text-center text-white/60">
-          © 2026 Rastrea Tracker
+          © {new Date().getFullYear()} {SITE_NAME}
         </div>
       </footer>
     </main>

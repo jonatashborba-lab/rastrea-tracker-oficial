@@ -1,14 +1,98 @@
 import Image from "next/image";
 import SiteHeader from "../components/SiteHeader";
+import Script from "next/script";
+import type { Metadata } from "next";
 
-const WHATSAPP =
-  "https://wa.me/555436421367?text=Olá! Quero uma cotação de rastreador para motorista de aplicativo.";
+const SITE_NAME = "Rastrea Tracker";
+const SITE_URL = "https://www.rastreatracker.com.br";
+const PAGE_URL = `${SITE_URL}/motorista-app`;
+
+const WHATSAPP_PHONE = "555436421367";
+const WHATSAPP_MESSAGE =
+  "Olá! Quero uma cotação de rastreador para motorista de aplicativo.";
+const WHATSAPP = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(
+  WHATSAPP_MESSAGE
+)}`;
+
+export const metadata: Metadata = {
+  title:
+    "Rastreamento para Motorista de App em Caxias do Sul | Uber, 99 e iFood",
+  description:
+    "Rastreamento para motorista de aplicativo (Uber, 99, iFood etc.) com app e portal web, alertas, histórico, relatórios e bloqueio opcional. Atendimento em Caxias do Sul e Serra Gaúcha.",
+  alternates: { canonical: PAGE_URL },
+  openGraph: {
+    title: "Rastreamento para Motorista de App | Rastrea Tracker",
+    description:
+      "Mais segurança para motoristas de aplicativo com rastreamento em tempo real, alertas e suporte. Atendimento em Caxias do Sul e Serra Gaúcha.",
+    url: PAGE_URL,
+    siteName: SITE_NAME,
+    type: "website",
+    images: [
+      {
+        url: `${SITE_URL}/motorista-app-hero.jpg`,
+        width: 1200,
+        height: 630,
+        alt: "Rastreamento para motorista de aplicativo - Rastrea Tracker",
+      },
+    ],
+  },
+  robots: { index: true, follow: true },
+};
 
 export default function MotoristaAppPage() {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: "Rastreamento para Motorista de Aplicativo",
+    description:
+      "Serviço de rastreamento veicular para motorista de aplicativo com app e portal web, alertas, relatórios, histórico de posições e bloqueio opcional.",
+    areaServed: [
+      "Caxias do Sul - RS",
+      "Serra Gaúcha - RS",
+      "Carlos Barbosa - RS",
+      "Garibaldi - RS",
+      "Feliz - RS",
+      "Nova Petrópolis - RS",
+      "Bom Princípio - RS",
+      "Vacaria - RS",
+      "São Marcos - RS",
+      "Veranópolis - RS",
+      "Antônio Prado - RS",
+      "Bento Gonçalves - RS",
+      "Farroupilha - RS",
+    ],
+    provider: {
+      "@type": "LocalBusiness",
+      name: SITE_NAME,
+      url: SITE_URL,
+      telephone: "+55 54 3642-1367",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Caxias do Sul",
+        addressRegion: "RS",
+        addressCountry: "BR",
+      },
+      areaServed: "Rio Grande do Sul",
+    },
+    offers: {
+      "@type": "Offer",
+      priceCurrency: "BRL",
+      price: "49.90",
+      availability: "https://schema.org/InStock",
+      url: PAGE_URL,
+    },
+  };
+
   return (
     <main className="min-h-screen bg-black text-white">
-      {/* Header padrão */}
       <SiteHeader />
+
+      {/* SEO: JSON-LD */}
+      <Script
+        id="jsonld-motorista-app"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
 
       {/* HERO */}
       <section
@@ -29,8 +113,6 @@ export default function MotoristaAppPage() {
             Adquira o Rastreamento para motorista de aplicativo sem necessidade
             de comprar o equipamento
           </p>
-
-          {/* REMOVIDO: botão "Quero cotação no WhatsApp" no HERO */}
         </div>
       </section>
 
@@ -53,12 +135,21 @@ export default function MotoristaAppPage() {
                 do veículo para trabalhar!
               </p>
 
+              {/* Intenção local (SEO) — sem mudar layout, só texto */}
+              <p className="mt-4 text-black/80 leading-relaxed text-lg">
+                Atendimento com foco em <b>Caxias do Sul</b> e na{" "}
+                <b>Serra Gaúcha</b>: Carlos Barbosa, Garibaldi, Feliz, Nova
+                Petrópolis, Bom Princípio, Vacaria, São Marcos, Veranópolis e
+                Antônio Prado.
+              </p>
+
               <div className="mt-10">
                 <Image
                   src="/motorista-app.png"
-                  alt="Apps: Uber, 99, Cabify, Easy Taxi"
+                  alt="Aplicativos: Uber, 99, Cabify, Easy Taxi e iFood"
                   width={820}
                   height={520}
+                  sizes="(max-width: 1024px) 100vw, 820px"
                   className="w-full h-auto"
                 />
               </div>
@@ -70,25 +161,20 @@ export default function MotoristaAppPage() {
               </p>
             </div>
 
-            {/* DIREITA (PLANO ALTERADO) */}
+            {/* DIREITA (PLANO) */}
             <aside className="rounded-2xl border border-black/10 overflow-hidden shadow-[0_20px_80px_rgba(0,0,0,0.15)]">
-              {/* NOME DO PLANO */}
               <div className="bg-[#0a0f2b] text-white px-6 py-5 text-center font-extrabold">
                 PLANO RASTREAMENTO COMPLETO
               </div>
 
-              {/* PREÇO */}
               <div className="bg-[#0a0f2b] text-white px-6 py-10 text-center">
                 <div className="text-white/80 text-sm">A partir de:</div>
-
                 <div className="mt-2 text-6xl font-extrabold">R$ 49,90</div>
-
                 <div className="text-white/80 text-sm mt-2">
                   + taxa de instalação
                 </div>
               </div>
 
-              {/* LISTA */}
               <div className="bg-white">
                 <ul className="divide-y divide-black/10">
                   {[
@@ -106,13 +192,11 @@ export default function MotoristaAppPage() {
                       <span className="text-green-600 text-lg font-bold">
                         ✓
                       </span>
-
                       <span className="text-black/80">{t}</span>
                     </li>
                   ))}
                 </ul>
 
-                {/* BOTÃO */}
                 <div className="p-6">
                   <a
                     href={WHATSAPP}
@@ -127,10 +211,10 @@ export default function MotoristaAppPage() {
             </aside>
           </div>
 
-          {/* TEXTO FINAL (NÃO ALTERADO) */}
+          {/* TEXTO FINAL */}
           <div className="mt-16">
             <h3 className="text-3xl font-extrabold text-[#0a0f2b]">
-              Saiba como o rastreamento veicular Rastrea Tracker pode te ajudar
+              Saiba como o rastreamento veicular {SITE_NAME} pode te ajudar
             </h3>
 
             <p className="mt-4 text-black/80 leading-relaxed text-lg">
@@ -164,7 +248,7 @@ export default function MotoristaAppPage() {
       {/* FOOTER */}
       <footer className="border-t border-white/10">
         <div className="px-6 py-10 text-sm text-white/60 text-center">
-          © {new Date().getFullYear()} Rastrea Tracker • Todos os direitos
+          © {new Date().getFullYear()} {SITE_NAME} • Todos os direitos
           reservados.
         </div>
       </footer>

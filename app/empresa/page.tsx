@@ -1,12 +1,111 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import SiteHeader from "../components/SiteHeader";
+
+const SITE_NAME = "Rastrea Tracker";
+const SITE_URL = "https://www.rastreatracker.com.br";
+const PAGE_URL = `${SITE_URL}/empresa`;
 
 const WHATSAPP =
   "https://wa.me/555436421367?text=Ol%C3%A1!%20Quero%20uma%20cota%C3%A7%C3%A3o%20de%20rastreamento%20veicular.";
 
+/** ✅ SEO: metadata específico da página /empresa (sem mexer no layout) */
+export const metadata: Metadata = {
+  title: "Empresa de Rastreamento Veicular em Caxias do Sul | Rastrea Tracker",
+  description:
+    "Conheça a Rastrea Tracker, empresa especializada em rastreamento veicular em Caxias do Sul e Serra Gaúcha. Tecnologia, suporte e monitoramento 24h.",
+  alternates: {
+    canonical: PAGE_URL,
+  },
+  openGraph: {
+    type: "website",
+    locale: "pt_BR",
+    url: PAGE_URL,
+    siteName: SITE_NAME,
+    title: "Empresa de Rastreamento Veicular | Rastrea Tracker",
+    description:
+      "Empresa especializada em rastreamento veicular com tecnologia, app e suporte completo em Caxias do Sul e Serra Gaúcha.",
+    images: [
+      {
+        url: "/og.jpg", // você disse que já tem no /public
+        width: 1200,
+        height: 630,
+        alt: `${SITE_NAME} - Rastreamento Veicular`,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Empresa de Rastreamento Veicular | Rastrea Tracker",
+    description:
+      "Rastreamento veicular com app, alertas e suporte. Atendimento em Caxias do Sul e Serra Gaúcha.",
+    images: ["/og.jpg"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+};
+
+function JsonLdLocalBusiness() {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    name: SITE_NAME,
+    url: SITE_URL,
+    telephone: "+55 54 3642-1367",
+    areaServed: [
+      { "@type": "City", name: "Caxias do Sul" },
+      { "@type": "City", name: "Bento Gonçalves" },
+      { "@type": "City", name: "Farroupilha" },
+      { "@type": "City", name: "Flores da Cunha" },
+      { "@type": "City", name: "Gramado" },
+      { "@type": "City", name: "Canela" },
+      { "@type": "City", name: "Carlos Barbosa" },
+      { "@type": "City", name: "Garibaldi" },
+      { "@type": "City", name: "Feliz" },
+      { "@type": "City", name: "Nova Petrópolis" },
+      { "@type": "City", name: "Veranópolis" },
+      { "@type": "City", name: "Vacaria" },
+      { "@type": "City", name: "Bom Princípio" },
+      { "@type": "City", name: "Antônio Prado" },
+      { "@type": "City", name: "São Marcos" },
+    ],
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Caxias do Sul",
+      addressRegion: "RS",
+      addressCountry: "BR",
+    },
+    sameAs: [
+      // quando tiver, coloque aqui:
+      // "https://instagram.com/SEUUSUARIO",
+      // "https://facebook.com/SUAPAGINA",
+    ],
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+    />
+  );
+}
+
 export default function EmpresaPage() {
   return (
     <main className="min-h-screen bg-black text-white">
+      {/* ✅ SEO invisível: JSON-LD (sem mexer no layout) */}
+      <JsonLdLocalBusiness />
+
       <SiteHeader />
 
       {/* HERO (mobile igual / desktop 280px e mais claro) */}
@@ -39,7 +138,7 @@ export default function EmpresaPage() {
             <div className="md:flex md:items-start md:justify-between md:gap-10">
               <div className="md:max-w-3xl">
                 <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-[#0a0f2b]">
-                  Conheça a empresa Rastrea Tracker
+                  Conheça a empresa de rastreamento veicular Rastrea Tracker
                 </h2>
 
                 <p className="mt-4 text-black/70 leading-relaxed md:text-[15.5px] md:leading-7">
@@ -61,6 +160,17 @@ export default function EmpresaPage() {
                   Com nosso portal e aplicativo mobile, você acessa rotas,
                   alertas, relatórios e histórico — e conta com suporte quando
                   precisar.
+                </p>
+
+                {/* ✅ SEO local (sem alterar layout): intenção geográfica e cidades */}
+                <p className="mt-4 text-black/70 leading-relaxed md:text-[15.5px] md:leading-7">
+                  Atendemos <b>Caxias do Sul</b> e toda a <b>Serra Gaúcha</b>,
+                  incluindo cidades como <b>Bento Gonçalves</b>,{" "}
+                  <b>Farroupilha</b>, <b>Flores da Cunha</b>, <b>Gramado</b>,{" "}
+                  <b>Canela</b>, <b>Carlos Barbosa</b>, <b>Garibaldi</b>,{" "}
+                  <b>Feliz</b>, <b>Nova Petrópolis</b>, <b>Veranópolis</b>,{" "}
+                  <b>Vacaria</b>, <b>Bom Princípio</b>, <b>Antônio Prado</b> e{" "}
+                  <b>São Marcos</b>.
                 </p>
               </div>
 
@@ -186,10 +296,14 @@ export default function EmpresaPage() {
               <div className="lg:sticky lg:top-24">
                 <div className="rounded-2xl border border-black/10 bg-gradient-to-b from-white to-black/5 p-6 shadow-sm">
                   <div className="rounded-2xl overflow-hidden border border-black/10 bg-white">
-                    <img
+                    {/* ✅ trocado img por next/image (melhor SEO + performance) */}
+                    <Image
                       src="/mascote-empresa.png"
-                      alt="Rastrea Tracker - Atendimento e suporte"
+                      alt="Empresa de rastreamento veicular Rastrea Tracker em Caxias do Sul"
+                      width={900}
+                      height={700}
                       className="w-full h-auto object-cover"
+                      priority={false}
                     />
                   </div>
 

@@ -1,13 +1,101 @@
 import Image from "next/image";
 import SiteHeader from "../components/SiteHeader";
+import Script from "next/script";
+import type { Metadata } from "next";
 
-const WHATSAPP =
-  "https://wa.me/555436421367?text=Olá! Quero uma cotação de rastreamento para frota.";
+const SITE_NAME = "Rastrea Tracker";
+const SITE_URL = "https://www.rastreatracker.com.br";
+const PAGE_URL = `${SITE_URL}/frota`;
+
+const WHATSAPP_PHONE = "555436421367";
+const WHATSAPP_MESSAGE = "Olá! Quero uma cotação de rastreamento para frota.";
+const WHATSAPP = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(
+  WHATSAPP_MESSAGE
+)}`;
+
+export const metadata: Metadata = {
+  title: "Rastreamento para Frotas em Caxias do Sul | Gestão e Monitoramento",
+  description:
+    "Rastreamento e monitoramento de frotas com app e portal web, alertas, relatórios gerenciais, identificador de motorista e controle de combustível. Atendimento em Caxias do Sul e Serra Gaúcha.",
+  alternates: {
+    canonical: PAGE_URL,
+  },
+  openGraph: {
+    title: "Rastreamento para Frotas em Caxias do Sul | Rastrea Tracker",
+    description:
+      "Gestão completa da frota com rastreamento em tempo real, alertas, relatórios e suporte. Atendimento em Caxias do Sul e Serra Gaúcha.",
+    url: PAGE_URL,
+    siteName: SITE_NAME,
+    type: "website",
+    images: [
+      {
+        url: `${SITE_URL}/frota-hero.jpg`,
+        width: 1200,
+        height: 630,
+        alt: "Rastreamento para frotas - Rastrea Tracker",
+      },
+    ],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
 
 export default function FrotaPage() {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: "Rastreamento para Frotas",
+    description:
+      "Serviço de rastreamento e monitoramento de frotas com app e portal web, alertas inteligentes, relatórios gerenciais, identificador de motorista e controle de combustível.",
+    areaServed: [
+      "Caxias do Sul - RS",
+      "Serra Gaúcha - RS",
+      "Carlos Barbosa - RS",
+      "Garibaldi - RS",
+      "Feliz - RS",
+      "Nova Petrópolis - RS",
+      "Bom Princípio - RS",
+      "Vacaria - RS",
+      "São Marcos - RS",
+      "Veranópolis - RS",
+      "Antônio Prado - RS",
+      "Bento Gonçalves - RS",
+      "Farroupilha - RS",
+    ],
+    provider: {
+      "@type": "LocalBusiness",
+      name: SITE_NAME,
+      url: SITE_URL,
+      telephone: "+55 54 3642-1367",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Caxias do Sul",
+        addressRegion: "RS",
+        addressCountry: "BR",
+      },
+      areaServed: "Rio Grande do Sul",
+    },
+    offers: {
+      "@type": "Offer",
+      priceCurrency: "BRL",
+      price: "49.90",
+      availability: "https://schema.org/InStock",
+      url: PAGE_URL,
+    },
+  };
+
   return (
     <main className="min-h-screen bg-black text-white">
       <SiteHeader />
+
+      {/* SEO: JSON-LD (não muda layout) */}
+      <Script
+        id="jsonld-frota"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
 
       {/* HERO */}
       <section
@@ -26,7 +114,7 @@ export default function FrotaPage() {
 
           <p className="mt-4 text-white/90 text-lg drop-shadow">
             Gestão completa, segurança e controle total da sua frota com
-            controle de combustivel e indentificador de motorista
+            controle de combustível e identificador de motorista
           </p>
 
           {/* BOTÃO REMOVIDO CONFORME SOLICITADO */}
@@ -48,12 +136,21 @@ export default function FrotaPage() {
                 redução de custos operacionais e aumento da produtividade.
               </p>
 
+              {/* Intenção local (SEO) — sem alterar layout, só texto */}
+              <p className="mt-4 text-black/80 leading-relaxed text-lg">
+                Atendimento e instalação com foco em <b>Caxias do Sul</b> e na{" "}
+                <b>Serra Gaúcha</b>, incluindo Carlos Barbosa, Garibaldi, Feliz,
+                Nova Petrópolis, Bom Princípio, Vacaria, São Marcos, Veranópolis
+                e Antônio Prado.
+              </p>
+
               <div className="mt-10">
                 <Image
                   src="/frota.png"
-                  alt="Frota"
+                  alt="Rastreamento e gestão de frota - imagem ilustrativa"
                   width={820}
                   height={520}
+                  sizes="(max-width: 1024px) 100vw, 820px"
                   className="w-full h-auto"
                 />
               </div>
@@ -123,8 +220,7 @@ export default function FrotaPage() {
           {/* BLOCO FINAL */}
           <div className="mt-16">
             <h3 className="text-4xl md:text-5xl font-extrabold tracking-tight text-[#0a0f2b]">
-              Saiba como o rastreamento veicular da Rastrea Tracker pode te
-              ajudar
+              Saiba como o rastreamento veicular da {SITE_NAME} pode te ajudar
             </h3>
 
             <p className="mt-6 text-black/80 leading-relaxed text-lg">
@@ -160,7 +256,7 @@ export default function FrotaPage() {
       {/* FOOTER */}
       <footer className="border-t border-white/10">
         <div className="px-6 py-10 text-sm text-white/60 text-center">
-          © {new Date().getFullYear()} Rastrea Tracker • Todos os direitos
+          © {new Date().getFullYear()} {SITE_NAME} • Todos os direitos
           reservados.
         </div>
       </footer>
