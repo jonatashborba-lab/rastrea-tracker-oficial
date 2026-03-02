@@ -169,7 +169,7 @@ export default function MotoristaAppPage() {
 
               <div className="bg-[#0a0f2b] text-white px-6 py-10 text-center">
                 <div className="text-white/80 text-sm">A partir de:</div>
-                <div className="mt-2 text-6xl font-extrabold">R$ 49,90</div>
+                <div className="mt-2 text-6xl font-extrabold">R$ 59,90</div>
                 <div className="text-white/80 text-sm mt-2">
                   + taxa de instalação
                 </div>

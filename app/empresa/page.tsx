@@ -273,20 +273,29 @@ export default function EmpresaPage() {
                       rastreamento para carro
                     </ServiceLink>
                     <span>•</span>
+
                     <ServiceLink href="/moto">
                       rastreamento para moto
                     </ServiceLink>
                     <span>•</span>
-                    <ServiceLink href="/caminhao">
-                      rastreamento para caminhão
+
+                    <ServiceLink href="/planos/kit-rastreador">
+                      kit rastreador
                     </ServiceLink>
                     <span>•</span>
+
                     <ServiceLink href="/frota">
                       rastreamento para frota
                     </ServiceLink>
                     <span>•</span>
+
                     <ServiceLink href="/motorista-app">
                       rastreamento para motorista de aplicativo
+                    </ServiceLink>
+                    <span>•</span>
+
+                    <ServiceLink href="/planos/monitoramento-proprio">
+                      monitoramento próprio
                     </ServiceLink>
                   </div>
                 </div>
@@ -361,7 +370,7 @@ export default function EmpresaPage() {
                   <b>WhatsApp:</b> (54) 3642-1367
                 </p>
                 <p>
-                  <b>Fixo:</b> (54) 3642-1367
+                  <b>E-mail:</b> rastreatracker@outlook.com
                 </p>
                 <p>
                   <b>E-mail:</b> rastreatracker@outlook.com

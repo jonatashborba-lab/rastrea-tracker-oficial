@@ -302,7 +302,7 @@ function PlanoCentralCard({ title, href }: { title: string; href: string }) {
 
         <p className="mt-5 text-white/70 text-sm">A partir de</p>
 
-        <p className="text-5xl font-extrabold tracking-tight">R$ 49,90</p>
+        <p className="text-5xl font-extrabold tracking-tight">R$ 59,90</p>
 
         <p className="text-white/60 text-sm mt-1">+ taxa de instalação</p>
       </div>
