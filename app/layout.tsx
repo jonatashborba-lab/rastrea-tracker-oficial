@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import Script from "next/script";
 
 const SITE_NAME = "Rastrea Tracker";
 const SITE_URL = "https://www.rastreatracker.com.br";
@@ -32,12 +33,10 @@ export const metadata: Metadata = {
 
   metadataBase: new URL("https://www.rastreatracker.com.br"),
 
-  // ✅ ADIÇÃO: canonical (URL oficial)
   alternates: {
     canonical: SITE_URL,
   },
 
-  // ✅ ADIÇÃO: robots
   robots: {
     index: true,
     follow: true,
@@ -58,19 +57,16 @@ export const metadata: Metadata = {
     siteName: "Rastrea Tracker",
     locale: "pt_BR",
     type: "website",
-
-    // ✅ ADIÇÃO: imagem do OpenGraph (WhatsApp/Facebook)
     images: [
       {
         url: "/og.jpg",
         width: 1200,
         height: 630,
-        alt: `${SITE_NAME} - Rastreamento Veicula`,
+        alt: `${SITE_NAME} - Rastreamento Veicular`,
       },
     ],
   },
 
-  // ✅ ADIÇÃO: Twitter card
   twitter: {
     card: "summary_large_image",
     title: "Rastrea Tracker | Rastreamento Veicular em Caxias do Sul",
@@ -102,11 +98,7 @@ function JsonLd() {
       addressRegion: REGION,
       addressCountry: COUNTRY,
     },
-    sameAs: [
-      // Coloque seus links quando tiver:
-      // "https://instagram.com/SEUUSUARIO",
-      // "https://facebook.com/SUAPAGINA",
-    ],
+    sameAs: [],
   };
 
   return (
@@ -125,6 +117,20 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body className="bg-black text-white antialiased">
+        {/* ✅ Google tag (gtag.js) - Google Ads */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=AW-17775456591"
+          strategy="afterInteractive"
+        />
+        <Script id="gtag-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){window.dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'AW-17775456591');
+          `}
+        </Script>
+
         <JsonLd />
         {children}
       </body>
